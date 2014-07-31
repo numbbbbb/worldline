@@ -1,0 +1,886 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<script src="/static/js/jquery.min.js"></script>
+
+<script type="text/javascript" src="/static/js/jquery-ui.js"></script>
+<script src="/static/js/jquery.mousewheel.min.js"></script>
+<script src="/static/js/jquery.mCustomScrollbar.js"></script>
+<script src="/static/js/ocanvas-2.2.2.min.js"></script>
+<script src="/static/js/meny.min.js"></script>
+<script type="text/javascript" src="/static/js/avgrund.js"></script>
+<link rel="stylesheet" href="/static/css/avgrund.css">
+<link href="/static/css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
+<style>
+#logout {
+z-index:3;
+    border: 2px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    color: #333;
+    font-size: 14px;
+    padding: 4px 10px;
+    position: absolute;
+    right: 10%;
+    top: 40px;
+}
+#logout:hover{
+border: 2px solid #fff;
+}
+#logout font{
+color:#ccc;
+}
+</style>
+<script>
+			function openDialog() {
+				Avgrund.show( "#default-popup" );
+			}
+			function closeDialog() {
+				Avgrund.hide();
+			}
+			function caozuo(){
+				$(".tianjia").attr("id","");
+				$(".del").attr("id","default-popup");
+			}
+			function caozuo2(){
+				$(".tianjia").attr("id","default-popup");
+				$(".del").attr("id","");
+				openDialog();
+			}
+			function changetj(){
+				$("#tianjia").css("background","#DEDFD9");
+				$("#tianjia").attr("disabled","disabled");
+			}
+			function backtj(){
+				$("#tianjia").css("background","");
+				$("#tianjia").removeAttr("disabled");
+			}
+		</script>
+<script type="text/javascript">
+{% autoescape off %}
+var line1 = [{% for line in line1 %}"{{ line }}"{% if not forloop.last %},{% endif %}{% endfor %}]  ;
+var secs1 = [{% for line in secs %}"{{ line }}"{% if not forloop.last %},{% endif %}{% endfor %}]  ;
+var month1 = [{% for month in month1 %}"{{ month }}"{% if not forloop.last %},{% endif %}{% endfor %}]  ;
+var year1 = [{% for year in year1 %}"{{ year }}"{% if not forloop.last %},{% endif %}{% endfor %}]  ;
+var numb1 = [{% for nb in numb1 %}"{{ nb }}"{% if not forloop.last %},{% endif %}{% endfor %}] ;
+var context1 = [{% for ct in text1 %}[{% for ct2 in ct %}'{{ ct2 }}'{% if not forloop.last %},{% endif %}{% endfor %}]{% if not forloop.last %},{% endif %}{% endfor %}];
+{% endautoescape %}
+var sign1 = 0;
+var ifff = 0;
+var setheight = screen.height*0.88;
+var setwidth = screen.width*0.3;
+var child = [];
+var xx = 0;
+var nowopen = null;
+var nowtext = null;
+var nowpage = 0;
+var nowi = 0;
+var signdel = 0;
+var signdelb = null;
+var arcOnClick = null;
+
+
+function scrollMove(){
+setTimeout('scrollMove()', 50);
+if (nowopen!=null)
+{
+	axx = arcOnClick.x;
+	if (axx+parseInt($(".mCSB_container").css("left"))<400) temp = 1; 
+
+$("#showtext").css("margin-left",axx+parseInt($(".mCSB_container").css("left"))-300);
+if (temp == 1) 
+$("#showtext").css("margin-left",axx+parseInt($(".mCSB_container").css("left")));
+}
+}
+
+function gb(){
+signdel = 1;
+signdelb.trigger("click tap");
+}
+
+function check()
+{
+	var asd = $("#add").val();
+if (asd.length>200) $("#alarm").css("visibility","")
+else $("#alarm").css("visibility","hidden");
+}
+
+
+function delcontext()
+{
+	var tempn = 0,tempp;
+	for (tempp = 0;tempp<nowi;tempp++)
+		tempn += context1[tempn].length;
+	tempn += nowpage;
+	 $.getJSON("/delcontext/",{numb:tempn},function(result){
+      $.each(result, function(i, field){
+
+		if (field == "wrong")
+		{
+		alert("wrong");
+		}
+		else
+		{
+		alert("ok");
+		signdel = 0;
+		closeDialog();
+		};
+      });
+    });
+}
+
+function sendadd()
+{
+var asd = $("#add").val();
+if (asd.length<=200){
+while( asd.indexOf( "'" ) != -1 ) {
+     asd = asd.replace("'","^>。");
+}
+while( asd.indexOf( "\n" ) != -1 ) {
+     asd = asd.replace("\n","<br/>");
+}
+ $.getJSON("/add/",{text:asd},function(result){
+      $.each(result, function(i, field){
+
+		if (field == "wrong")
+		{
+		alert("wrong");
+		}
+		else
+		{
+		alert("ok");
+		};
+      });
+    });
+	$("#add").val('');
+}}
+
+function temp0()
+{
+		numb1[numb1.length-1] += ".";
+		var text2 = canvas.display.text({
+	x: -5,
+	y: -35,
+	origin: { x: "right", y: "top" },
+	font: "bold 20px sans-serif",
+	text: numb1[numb1.length-1],
+	fill: "#D6A78B",
+	pointerEvents:false,
+	rotation:45,
+	shadow: "0 0 20px rgba(255,255,0,0.8)",
+	opacity:0
+});
+child[child.length-1].removeChildAt(1);
+child[child.length-1].addChild(text2);
+text2.fadeIn("long", "ease-in-out-cubic", function () {
+		canvas.redraw();
+	});
+	context1[context1.length-1][context1[context1.length-1].length]=$("#add").val().toString();
+	sendadd();
+}
+
+function tempnot0()
+{
+	xxx = child[child.length-1].x;
+var line = canvas.display.line({
+	start: { x: xxx+30, y: setwidth },
+	end: { x: $("#canvas").attr("width"), y: setwidth },
+	stroke: "20px #222",
+	cap: "round",
+});
+canvas.addChild(line);
+		canvas.redraw();
+	line1[line1.length-1] = (parseInt(line1[line1.length-2])+temp).toString();
+	line1[line1.length] = (parseInt(line1[line1.length-1])+100).toString();
+	 if (line1[line1.length-1]<screen.width) line1[line1.length-1]=screen.width;
+	 if (line1[line1.length-1]>screen.width) $("#canvas").attr("width",line1[line1.length-1]);
+	 month1[month1.length] = month+'.'+day;
+	 year1[year1.length] = year;
+	 numb1[numb1.length] = ".";
+	context1[context1.length] = new Array();;
+	context1[context1.length-1][0] = $("#add").val().toString();
+	xx = xxx+30;
+	sign1--;
+canvas.timeline.start();
+	$("#canvas").attr("width",parseInt($("#canvas").attr("width")));
+	$("#dhc12s").mCustomScrollbar("update");
+	canvas.redraw();
+	sendadd();
+}
+
+function kong()
+{
+				line1[0] = "100";
+var line = canvas.display.line({
+	start: { x: 100, y: setwidth },
+	end: { x: $("#canvas").attr("width"), y: setwidth },
+	stroke: "20px #222",
+	cap: "round",
+});
+canvas.addChild(line);
+		canvas.redraw();
+	
+	line1[line1.length] = "200";
+	 if (line1[line1.length-1]<screen.width) line1[line1.length-1]=screen.width;
+	
+	 month1[month1.length] = month+'.'+day;
+	 year1[year1.length] = year;
+	 numb1[numb1.length] = ".";
+	  
+	xx = 90;
+	sign1=0;
+	context1[0] = new Array();;
+	context1[0][0] = $("#add").val().toString();
+canvas.timeline.start();
+sendadd();
+}
+
+function showadd()
+{
+closeDialog();
+	if ($("#add").val() != '')
+	{
+		
+		var myDate = new Date();
+		year = myDate.getFullYear();
+		month = myDate.getMonth()+1;
+		day = myDate.getDate();
+		if (year1.length == 0)
+		{
+		
+			kong();
+			return;
+		}
+var timestamp = Date.parse(new Date());
+		temp = (parseInt(timestamp)/1000-parseInt(secs1[secs1.length-1]))/800;
+		if (temp<50) temp = 0;
+		if (temp == 0)
+		{
+		
+			temp0();
+			return;
+		}
+		tempnot0();
+	}
+}
+
+
+
+$(document).ready(function()
+  {
+  setTimeout('scrollMove()', 100);
+
+   $("#add").bind("keyup",check);
+$("#add").bind("onpaste",check);
+  for (var sb=0;sb<context1.length;sb++)
+  {
+	for (var sb2=0;sb2<context1[sb].length;sb2++){
+		while( context1[sb][sb2].indexOf( "^>。" ) != -1 ) {
+     context1[sb][sb2] = context1[sb][sb2].replace("^>。","'"); 
+}
+
+}
+} 
+  if (line1[line1.length-1]<screen.width) {
+  if ((line1.length==1&&line1[0]=='150')||(line1.length==2&&line1[1]=='150'))
+   line1[line1.length-1]=screen.width;
+   else
+  line1[line1.length]=screen.width;
+  
+  }
+  else line1[line1.length]=(parseInt(line1[line1.length-1])+200).toString();
+$("#canvas").attr("height",setheight);
+$("#canvas").attr("width",line1[line1.length-1]);
+				$("#dhc12s").mCustomScrollbar({
+				scrollButtons:{
+    scrollSpeed: 100,
+	scrollAmount: 100
+},
+				horizontalScroll: true,
+				advanced:{
+    autoExpandHorizontalScroll: true
+},
+					scrollButtons:{
+						enable:true
+					}
+				});
+    window.canvas = oCanvas.create({ 
+	enabled : true,
+    canvas: "#canvas", 
+    background: "#222", 
+    fps: 60
+});
+canvas.setLoop(function aa() {
+changetj(); 	
+if (xx >= line1[sign1]) 
+{
+sign1++;
+if (line1[sign1] == null) {canvas.timeline.stop();backtj();return;}
+var arc = canvas.display.arc({
+	x: xx+30,
+	y: setwidth,
+	radius: 20,
+	start: 0,
+	end: 360,
+	shadow: "0 0 20px rgba(255,255,255, 0.8)",
+	fill: "#06B9D1",
+});
+canvas.addChild(arc);
+child[child.length] = arc;
+var text = canvas.display.text({
+	x: 10,
+	y: 25,
+	origin: { x: "left", y: "top" },
+	font: "bold 20px sans-serif",
+	text: month1[sign1-1],
+	fill: "#D6A78B",
+	pointerEvents:false,
+	rotation:45,
+	shadow: "0 0 20px rgba(255,255,0,0.8)",
+	opacity:0
+});
+arc.addChild(text);
+var text2 = canvas.display.text({
+	x: -5,
+	y: -35,
+	origin: { x: "right", y: "top" },
+	font: "bold 20px sans-serif",
+	text: numb1[sign1-1],
+	fill: "#D6A78B",
+	pointerEvents:false,
+	rotation:45,
+	shadow: "0 0 20px rgba(255,255,0,0.8)",
+	opacity:0
+});
+arc.addChild(text2);
+text.fadeIn("long", "ease-in-out-cubic", function () {
+		canvas.redraw();
+	});
+text2.fadeIn("long", "ease-in-out-cubic", function () {
+		canvas.redraw();
+	});
+arc.bind("mouseenter",function(){
+canvas.mouse.cursor("pointer");
+})
+function a() {
+arc.unbind("mouseenter",a);
+		this.animate({
+		radius: this.radius-5,
+		rotation:this.rotation+25
+	},{
+	duration: "short",
+	easing:"ease-out-circ"}
+	);
+}
+arc.bind("mouseenter",a).bind("mouseleave", function b() {
+	canvas.mouse.cursor("default");
+		this.animate({
+		radius: 20,
+		rotation:0
+	},{
+	duration: "normal",
+	easing:"ease-out-circ",
+	callback:function(){
+	arc.bind("mouseenter",a);
+	}}
+	);
+	canvas.redraw();
+});
+arc.bind("click tap", function aa() {
+arcOnClick = this;
+axx = this.x;
+ayy = this.y;
+mouseX = canvas.mouse.x;
+if (nowopen != null){
+nowopen.fadeOut("short", "ease-in-out-cubic", function () {
+		canvas.redraw();
+		canvas.removeChild(nowopen);
+		nowopen = null;
+  		var temp = 0;
+if (axx+parseInt($(".mCSB_container").css("left"))<400) temp = 1; 
+for (i=0;i<line1.length;i++)
+{
+	if (Math.abs(parseInt(line1[i])-axx) < 50)
+	{
+		//123123
+		var button = canvas.display.rectangle({
+	x: axx+300*temp,
+	y: ayy-400,
+	pointerEvents:false,
+	origin: { x: "right", y: "top" },
+	width: 300,
+	height: 350,
+	fill: "linear-gradient(315deg, #ccc, #222)",
+	join: "round",
+	shadow: "0 0 5px rgba(255,255,255, 0.8)",
+	opacity:0
+});
+canvas.addChild(button);
+button.bind("click tap",function(){
+this.stopPropagation();
+});
+$("#showtext").css("margin-left",axx+parseInt($(".mCSB_container").css("left"))-300);
+if (temp == 1) 
+$("#showtext").css("margin-left",axx+parseInt($(".mCSB_container").css("left")));
+$("#showtext").css("margin-top",ayy-400);
+$("#showtext").css("display","");
+nowopen = button;
+nowpage = 0;
+$("#showtext").html("<p>"+context1[i][nowpage]+"</p>");
+var delbutton = canvas.display.image({
+	x: -12,
+	y: 25,
+	height:20,
+	width:20,
+	origin: { x: "center", y: "center" },
+	image: "/static/pic/delbutton.png",
+	opacity:0.75,
+	shadow:"0 0 5px rgba(255,255,255, 0.8)"
+});
+button.addChild(delbutton);
+delbutton.bind("mouseenter",function (){
+this.opacity=1;
+canvas.mouse.cursor("pointer");
+canvas.redraw();
+}).bind("mouseleave",function(){
+this.opacity = 0.75;
+canvas.mouse.cursor("default");
+canvas.redraw();
+});
+delbutton.bind("click tap",function delf(){
+if (signdel == 0){
+signdelb = this;
+caozuo();
+openDialog();
+return;
+}
+signdel == 0;
+if (context1[nowi].length == 1)
+{
+$("#showtext").css("display","none");
+nowopen.fadeOut("short", "ease-in-out-cubic", function () {
+		canvas.redraw();
+		canvas.removeChild(nowopen);
+		nowopen = null;})
+line1.splice(nowi,1);
+secs1.splice(nowi,1);
+		month1.splice(nowi,1);
+		year1.splice(nowi,1);
+		context1[nowi].splice(0,1);
+		sign1--;
+		var line = canvas.display.line({
+	start: { x: child[nowi].x-30, y: setwidth },
+	end: { x: child[nowi].x+30, y: setwidth },
+	stroke: "20px #fff",
+	cap: "round",
+});
+child[nowi].remove();
+child.splice(nowi,1);
+canvas.addChild(line);
+canvas.redraw();
+delcontext();
+}
+else
+{
+context1[nowi].splice(nowpage,1);
+delcontext();
+nowpage = 0;
+$("#showtext").html("<p>"+context1[nowi][nowpage]+"</p>");
+numb1[nowi] = numb1[nowi].substr(0,numb1[nowi].length-1);
+child[nowi].removeChildAt(1);
+var text2 = canvas.display.text({
+	x: -5,
+	y: -35,
+	origin: { x: "right", y: "top" },
+	font: "bold 20px sans-serif",
+	text: numb1[nowi],
+	fill: "#D6A78B",
+	pointerEvents:false,
+	rotation:45,
+	shadow: "0 0 20px rgba(255,255,0,0.8)",
+	opacity:0
+});
+child[nowi].addChild(text2);
+text2.fadeIn("long", "ease-in-out-cubic", function () {
+		canvas.redraw();
+	});
+}
+	this.stopPropagation();
+});
+if (context1[i].length==1)
+{
+button.fadeIn("short", "ease-in-out-cubic", function () {
+		canvas.redraw();		
+	});
+		nowi = i;
+		this.stopPropagation();
+		return;
+};
+var lbutton = canvas.display.image({
+	x: -80,
+	y: 325,
+	height:25,
+	width:50,
+	origin: { x: "center", y: "center" },
+	image: "/static/pic/left.gif",
+	opacity:1,
+	shadow:"0 0 5px rgba(255,255,255, 0.8)"
+});
+button.addChild(lbutton);
+lbutton.bind("mouseenter",function(){
+canvas.mouse.cursor("pointer");
+this.height=20;
+this.width=40;
+canvas.redraw();
+}).bind("mouseleave",function(){
+canvas.mouse.cursor("default");
+this.height=25;
+this.width=50;
+canvas.redraw();
+})
+lbutton.bind("click tap",function(){
+if (nowpage>0){
+nowpage -= 1;
+$("#showtext").html("<p>"+context1[nowi][nowpage]+"</p>");
+};
+this.stopPropagation();
+});
+var rbutton = canvas.display.image({
+	x: -30,
+	y: 325,
+	height:25,
+	width:50,
+	origin: { x: "center", y: "center" },
+	image: "/static/pic/right.gif",
+	opacity:1,
+	shadow:"0 0 5px rgba(255,255,255, 0.8)"
+});
+button.addChild(rbutton);
+rbutton.bind("mouseenter",function(){
+canvas.mouse.cursor("pointer");
+this.height=20;
+this.width=40;
+canvas.redraw();
+}).bind("mouseleave",function(){
+canvas.mouse.cursor("default");
+this.height=25;
+this.width=50;
+canvas.redraw();
+})
+rbutton.bind("click tap",function(){
+if (nowpage<context1[nowi].length-1){
+nowpage += 1;
+$("#showtext").html("<p>"+context1[nowi][nowpage]+"</p>");
+};
+this.stopPropagation();
+});
+button.fadeIn("short", "ease-in-out-cubic", function () {
+		canvas.redraw();		
+	});
+		nowi = i;};
+};
+this.stopPropagation();
+return;
+
+	});}
+	else{
+var temp = 0;
+if (axx+parseInt($(".mCSB_container").css("left"))<400) temp = 1; 
+
+for (i=0;i<line1.length;i++)
+{
+	if (Math.abs(parseInt(line1[i])-axx) < 50)
+	{
+		//123123
+		var button = canvas.display.rectangle({
+	x: axx+300*temp,
+	y: ayy-400,
+	origin: { x: "right", y: "top" },
+	width: 300,
+	height: 350,
+	fill: "linear-gradient(315deg, #ccc, #222)",
+	join: "round",
+	shadow: "0 0 5px rgba(255,255,255, 0.8)",
+	opacity:0
+});
+canvas.addChild(button);
+button.bind("click tap",function(){
+this.stopPropagation();
+})
+$("#showtext").css("margin-left",axx+parseInt($(".mCSB_container").css("left"))-300);
+if (temp == 1) 
+$("#showtext").css("margin-left",axx+parseInt($(".mCSB_container").css("left")));
+$("#showtext").css("margin-top",ayy-400);
+$("#showtext").css("display","");
+nowopen = button;
+nowpage = 0;
+$("#showtext").html("<p>"+context1[i][nowpage]+"</p>");
+var delbutton = canvas.display.image({
+	x: -12,
+	y: 25,
+	height:20,
+	width:20,
+	origin: { x: "center", y: "center" },
+	image: "/static/pic/delbutton.png",
+	opacity:0.75,
+	shadow:"0 0 5px rgba(255,255,255, 0.8)"
+});
+button.addChild(delbutton);
+delbutton.bind("mouseenter",function (){
+this.opacity=1;
+canvas.mouse.cursor("pointer");
+canvas.redraw();
+}).bind("mouseleave",function(){
+this.opacity = 0.75;
+canvas.mouse.cursor("default");
+canvas.redraw();
+});
+delbutton.bind("click tap",function delf2(){
+if (signdel == 0){
+signdelb = this;
+caozuo();
+openDialog();
+return;
+}
+
+signdel == 0;
+if (context1[nowi].length == 1)
+{
+$("#showtext").css("display","none");
+nowopen.fadeOut("short", "ease-in-out-cubic", function () {
+		canvas.redraw();
+		canvas.removeChild(nowopen);
+		nowopen = null;})
+line1.splice(nowi,1);
+secs1.splice(nowi,1);
+		month1.splice(nowi,1);
+		year1.splice(nowi,1);
+		context1[nowi].splice(0,1);
+		sign1--;
+		var line = canvas.display.line({
+	start: { x: child[nowi].x-30, y: setwidth },
+	end: { x: child[nowi].x+30, y: setwidth },
+	stroke: "20px #fff",
+	cap: "round",
+});
+child[nowi].remove();
+child.splice(nowi,1);
+canvas.addChild(line);
+canvas.redraw();
+delcontext();
+}
+else
+{
+context1[nowi].splice(nowpage,1);
+delcontext();
+nowpage = 0;
+$("#showtext").html("<p>"+context1[nowi][nowpage]+"</p>");
+numb1[nowi] = numb1[nowi].substr(0,numb1[nowi].length-1);
+child[nowi].removeChildAt(1);
+var text2 = canvas.display.text({
+	x: -5,
+	y: -35,
+	origin: { x: "right", y: "top" },
+	font: "bold 20px sans-serif",
+	text: numb1[nowi],
+	fill: "#D6A78B",
+	pointerEvents:false,
+	rotation:45,
+	shadow: "0 0 20px rgba(255,255,0,0.8)",
+	opacity:0
+});
+child[nowi].addChild(text2);
+text2.fadeIn("long", "ease-in-out-cubic", function () {
+		canvas.redraw();
+	});
+}
+	this.stopPropagation();
+});
+if (context1[i].length==1)
+{
+button.fadeIn("short", "ease-in-out-cubic", function () {
+		canvas.redraw();		
+	});
+		nowi = i;
+		this.stopPropagation();
+		return;
+};
+var lbutton = canvas.display.image({
+	x: -80,
+	y: 325,
+	height:25,
+	width:50,
+	origin: { x: "center", y: "center" },
+	image: "/static/pic/left.gif",
+	opacity:1,
+	shadow:"0 0 5px rgba(255,255,255, 0.8)"
+});
+button.addChild(lbutton);
+lbutton.bind("mouseenter",function(){
+canvas.mouse.cursor("pointer");
+this.height=20;
+this.width=40;
+canvas.redraw();
+}).bind("mouseleave",function(){
+canvas.mouse.cursor("default");
+this.height=25;
+this.width=50;
+canvas.redraw();
+})
+lbutton.bind("click tap",function(){
+if (nowpage>0){
+nowpage -= 1;
+$("#showtext").html("<p>"+context1[nowi][nowpage]+"</p>");
+};
+this.stopPropagation();
+});
+var rbutton = canvas.display.image({
+	x: -30,
+	y: 325,
+	height:25,
+	width:50,
+	origin: { x: "center", y: "center" },
+	image: "/static/pic/right.gif",
+	opacity:1,
+	shadow:"0 0 5px rgba(255,255,255, 0.8)"
+});
+button.addChild(rbutton);
+rbutton.bind("mouseenter",function(){
+canvas.mouse.cursor("pointer");
+this.height=20;
+this.width=40;
+canvas.redraw();
+}).bind("mouseleave",function(){
+canvas.mouse.cursor("default");
+this.height=25;
+this.width=50;
+canvas.redraw();
+})
+rbutton.bind("click tap",function(){
+if (nowpage<context1[nowi].length-1){
+nowpage += 1;
+$("#showtext").html("<p>"+context1[nowi][nowpage]+"</p>");
+};
+this.stopPropagation();
+});
+button.fadeIn("short", "ease-in-out-cubic", function () {
+		canvas.redraw();		
+	});
+		nowi = i;
+		this.stopPropagation();
+		};
+};
+return;
+}
+})
+xx += 60;
+};
+var line = canvas.display.line({
+	start: { x: xx, y: setwidth },
+	end: { x: xx+=10, y: setwidth },
+	stroke: "20px #fff",
+	cap: "round",
+});
+canvas.addChild(line);
+ $("#dhc12s").mCustomScrollbar("scrollTo",xx);
+}).start();
+canvas.bind("click tap",function(){
+if (nowopen != null){nowopen.fadeOut("short", "ease-in-out-cubic", function () {
+$("#showtext").css("display","");
+})}
+
+})
+ $("#dhc12s").mCustomScrollbar("update");
+
+});
+</script>
+
+<title>世界线</title>
+</head>
+
+<body style="width:100%;height:100%;overflow:hidden;">
+<aside  id="default-popup" class="avgrund-popup tianjia">
+<center>
+			<textarea id="add" style="height:130px;width:300px;overflow:hidden;" ></textarea>
+			<p id="alarm" style="visibility:hidden;"><font color=red>长度不能超过200！</font></p></center>
+			<center>
+			<button onclick="javascript:showadd();">添加</button>
+			<button onclick="javascript:closeDialog();">取消</button></center>
+		</aside>
+		<aside  class="avgrund-popup del">
+		<br/>
+			<center><h1>确认删除吗？</h1></center>
+			<br/><br/>
+			<center><button style="margin-left:-15px;" onclick="javascript:gb();">删除</button>
+			<button onclick="javascript:closeDialog();">取消</button></center>
+		</aside>
+	<div class="meny">
+			<h2>Want More?</h2>
+			<ul>
+			<li>
+	<a href="mailto:lj925184928@gmail.com?subject=世界线反馈建议">建议反馈</a>
+	</li>
+	<li>
+	<a href="/about/">关于</a>
+	</li>
+	<li>
+	<a href="/questions/">常见问题</a>
+	</li>
+	<li>
+	<a href="/privacy/">隐私权政策</a>
+	</li>
+			</ul>
+		</div>
+				<div class="meny-arrow"></div>
+			<div class="contents avgrund-contents">
+					<a href="http://127.0.0.1:8000/" style="position:fixed;margin-left:200px;margin-top:40px;z-index:3;">
+		<h1 id="logo"><font>世界线</font></h1>
+		</a>
+				<a id="logout" href="/logout/"><font>注销</font></a>
+			<div id="showtext" style="padding:10px;position:fixed;width:260px;height:290px;display:none;z-index:2;"></div>
+<button id="tianjia" style="position:fixed;margin-left:50%;margin-top:40%;z-index:2;"  onclick="caozuo2();">添加</button>
+<div id="dhc12s" >
+<canvas id="canvas" height=600px width=500px onclick="mouseOver();"></canvas>
+ </div>
+ </div>
+		<script>
+			// Create an instance of Meny
+			var meny = Meny.create({
+				// The element that will be animated in from off screen
+				menuElement: document.querySelector( '.meny' ),
+
+				// The contents that gets pushed aside while Meny is active
+				contentsElement: document.querySelector( '.contents' ),
+
+				// [optional] The alignment of the menu (top/right/bottom/left)
+				position: Meny.getQuery().p || 'left',
+
+				// [optional] The height of the menu (when using top/bottom position)
+				height: 200,
+
+				// [optional] The width of the menu (when using left/right position)
+				width: 260,
+
+				// [optional] Distance from mouse (in pixels) when menu should open
+				threshold: 40
+			});
+
+			// API Methods:
+			// meny.open();
+			// meny.close();
+			// meny.isOpen();
+			
+			// Events:
+			// meny.addEventListener( 'open', function(){ console.log( 'open' ); } );
+			// meny.addEventListener( 'close', function(){ console.log( 'close' ); } );
+
+			// Embed an iframe if a URL is passed in
+			if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
+				var contents = document.querySelector( '.contents' );
+				contents.style.padding = '0px';
+				contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
+			}
+		</script>
+</body>
+</html>

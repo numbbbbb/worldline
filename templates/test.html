@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>世界线</title>
+<!-- Meta -->    
+<meta name="description" content="属于你的世界线">    
+<meta name="keywords" content="世界线，记录" />    
+<meta name="author" content="numbbbbb"> 
+<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/greensock/cssplugin/CSSPlugin.min.js"></script>
+<script type="text/javascript" src="/static/greensock/EasePack.min.js"></script>
+<script type="text/javascript" src="/static/greensock/TweenLite.min.js"></script>
+<script type="text/javascript" src="/static/greensock/TimelineLite.min.js"></script>
+<link rel="stylesheet" href="/static/css/avgrund.css">
+<style>
+body html{
+margin:0;
+padding:0;
+}
+.pixel{
+height:15px;
+width:15px;
+-webkit-transform: translate(0px, 0px);
+position:absolute;
+}
+.word{
+position:absolute;
+}
+</style>
+<script type="text/javascript">
+function Go(){
+window.location.href="/worldline/";
+}
+function changeColor(){
+ setTimeout('changeColor()', 2000);
+var yy = $("#name").children();
+var $xx = yy.children();
+for(var i=0;i< $xx.length;i++){
+if (Math.random()<0.1){
+var p =100+100*Math.random()+1;
+$xx[i].style.backgroundColor="rgb("+parseInt(p)+","+parseInt(p+5*Math.random())+","+parseInt(p-5*Math.random())+")";
+}
+};
+}
+function changeColor2(){
+ setTimeout('changeColor()', 2000);
+var yy = $("#name").children();
+var $xx = yy.children();
+for(var i=0;i< $xx.length;i++){
+if (Math.random()<0.1){
+var p =100+100*Math.random()+1;
+$xx[i].style.backgroundColor="rgb("+parseInt(p)+","+parseInt(p+5*Math.random())+","+parseInt(p-5*Math.random())+")";
+}
+};
+}
+function changeColor3(){
+ setTimeout('changeColor()', 2000);
+var yy = $("#name").children();
+var $xx = yy.children();
+for(var i=0;i< $xx.length;i++){
+if (Math.random()<0.1){
+var p =100+100*Math.random()+1;
+$xx[i].style.backgroundColor="rgb("+parseInt(p)+","+parseInt(p+5*Math.random())+","+parseInt(p-5*Math.random())+")";
+}
+};
+}
+$(document).ready(function(){
+var setx = 400;
+var sety = 400;
+var tl = new TimelineLite();
+tl.pause();
+var yy = $("#name").children();
+for(var i=0;i< yy.length;i++){   
+var $xx = yy.children();
+for(var i=0;i< $xx.length;i++){
+var p =100+100*Math.random()+1;
+$xx[i].style.backgroundColor="rgb("+parseInt(p)+","+parseInt(p+5*Math.random())+","+parseInt(p-5*Math.random())+")";
+tl.to($xx[i],0, {css:{rotation:parseInt(300*Math.random())},});
+if (Math.random()>0.5)
+pp = parseFloat(1-Math.random());
+else 
+pp = parseFloat(2+Math.random());
+tl.to($xx[i],0, {css:{scaleX:pp,scaleY:pp},});
+tl.from($xx[i],0.8, {css:{left:parseFloat(window.screen.width*Math.random())-setx,top:parseFloat(window.screen.height*Math.random())-sety,opacity:0}, ease:Strong.easeOut},-1.1);
+tl.to($xx[i],0.8, {css:{rotation:90,scaleX:1,scaleY:1},},-0.75);
+};
+tl.to($("#welcome"),0.1, {css:{opacity:1,left:"30%",top:"30px"},});
+tl.to($("#welcome"),0, {css:{left:"30%",top:"30px"},});
+tl.to($("#welcome"),0.8, {css:{scaleX:1.5,scaleY:1.5},ease:Strong.easeOut});
+tl.to($("#welcome"),0.1, {css:{opacity:0,scaleX:0.5,scaleY:0.5},});
+tl.to($("#worldline"),0.1, {css:{opacity:1,left:"70%",top:"30px"},},0.5);
+tl.to($("#worldline"),0, {css:{left:"70%",top:"30px"},});
+tl.to($("#worldline"),0.8, {css:{scaleX:1.5,scaleY:1.5},ease:Strong.easeOut});
+tl.to($("#worldline"),0.1, {css:{opacity:0,scaleX:0.5,scaleY:0.5},});
+tl.to($("#intro"),0.1, {css:{opacity:1,left:"30%",top:"30px"},},0.5);
+tl.to($("#intro"),0, {css:{left:"30%",top:"30px"},});
+tl.to($("#intro"),0.8, {css:{scaleX:1.2,scaleY:1.2},ease:Strong.easeOut});
+tl.play();
+ setTimeout('changeColor()', 4000);
+  setTimeout('changeColor2()', 4400);
+   setTimeout('changeColor3()', 5300);
+};
+});
+</script>
+</head>
+<body style="height:100%;width:100%;background-color:black;overflow:hidden;">
+	<div id="name" style="position:absolute;margin-left:32%;margin-top:-10%;">
+	<div id="w" class="word">
+	<div class="pixel" style="top:45px;left:40px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:40px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:40px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:40px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:55px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:70px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:70px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:70px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:85px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:100px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:100px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:100px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:100px;background-color:#ccc;"> </div>
+	</div>
+	<div id="o" class="word">
+	<div class="pixel" style="top:60px;left:130px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:130px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:130px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:145px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:145px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:160px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:160px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:175px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:175px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:175px;background-color:#ccc;"> </div>
+	</div>
+	<div id="r" class="word">
+	<div class="pixel" style="top:45px;left:205px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:205px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:205px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:205px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:205px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:220px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:220px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:235px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:235px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:235px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:235px;background-color:#ccc;"> </div>
+	</div>
+	<div id="l" class="word">
+	<div class="pixel" style="top:45px;left:265px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:265px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:265px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:265px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:265px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:280px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:295px;background-color:#ccc;"> </div>
+	</div>
+	<div id="d" class="word">
+	<div class="pixel" style="top:45px;left:325px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:325px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:325px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:325px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:325px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:340px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:340px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:355px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:355px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:355px;background-color:#ccc;"> </div>
+	</div>
+	<div id="bigl" class="word">
+	<div class="pixel" style="top:45px;left:415px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:415px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:415px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:415px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:415px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:430px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:445px;background-color:#ccc;"> </div>
+	</div>
+	<div id="i" class="word">
+	<div class="pixel" style="top:45px;left:475px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:475px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:475px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:475px;background-color:#ccc;"> </div>
+	</div>
+	<div id="n" class="word">
+	<div class="pixel" style="top:45px;left:505px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:505px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:505px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:505px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:505px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:520px;background-color:#000;"> </div>
+	<div class="pixel" style="top:45px;left:535px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:535px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:535px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:535px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:535px;background-color:#ccc;"> </div>
+	</div>
+	<div id="e" class="word">
+	<div class="pixel" style="top:45px;left:565px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:60px;left:565px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:565px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:90px;left:565px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:565px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:580px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:75px;left:580px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:580px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:45px;left:595px;background-color:#ccc;"> </div>
+	<div class="pixel" style="top:105px;left:595px;background-color:#ccc;"> </div>
+	</div>
+	</div>
+	<div style="margin-left:32%;margin-top:12%;position:relative;overflow:hidden;height:500px;width:600px;">
+	<div id="welcome" style="opacity:0;position:absolute;">
+	<p><h1><b><font size=5 color=#ccc>欢迎来到</font></p>
+	</div>
+	<div id="worldline" style="opacity:0;position:absolute;">
+	<p><font size=5 color=red>世界线</font></b></h1></p>
+	</div>
+	<div id="intro" style="opacity:0;position:absolute;height:100px;width:400px;">
+	<p><b><font size=5 color=#ccc>使用方法:</font></b></p>
+	<table style="margin-left:20px;">
+	<tr>
+	<td>
+	<span><font size=5 color=#ccc>点击</font></span></td><td><img style="width:40px;height:40px;padding:10px;margin:0;" src="/static/pic/yd.jpg" /></td><td><span><font size=5 color=#ccc>可以查看详细内容</font></span></td></tr>
+	<tr>
+	<td>
+	<span><font size=5 color=#ccc>点击</font></span></td><td><img style="width:60px;height:40px;padding:0;margin:0;" src="/static/pic/add.jpg" /></td><td><span><font size=5 color=#ccc>可以添加新笔记</font></span></td></tr>
+	</table>
+	<center><button onClick="Go();">Go</button></center>
+	</div>
+	</div>
+</body>
+</html>

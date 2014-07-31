@@ -1,0 +1,288 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset, img {
+    border: 0 none;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+ol, ul {
+    list-style: none outside none;
+}
+caption, th {
+    text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+body {
+    font: 13px/1.231 arial,helvetica,clean,sans-serif;
+}
+table {
+    font-size: inherit;
+}
+#content {
+    position: relative;
+}
+em {
+    font-style: italic;
+}
+ol, ul {
+    list-style: none outside none;
+}
+html body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 1.4em;
+    margin: 0;
+    overflow-x: hidden;
+}
+.header {
+    color: #343434;
+    font-size: 2em;
+    height: 4em;
+    position: relative;
+    z-index: 1;
+}
+.header h1 {
+    left: 10%;
+    position: absolute;
+    top: 40px;
+}
+.header a.login {
+    border: 2px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    color: #333;
+    font-size: 14px;
+    padding: 4px 10px;
+    position: absolute;
+    right: 10%;
+    top: 40px;
+}
+.header a.login:hover{
+border: 2px solid #fff;
+}
+
+a {
+    text-decoration: none;
+}
+.header a font{
+color:#ccc;
+}
+
+#logo font{
+font-size:1em;
+font-weight:bold;
+color:#ccc;
+}
+#logo font:hover{
+color:#fff;
+}
+input, textarea, select {
+    border: 1px solid #CCCCCC;
+    font-size: 14px;
+    margin-right: 5px;
+    padding: 4px;
+}
+input:hover, textarea:hover, select:hover {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #A0A0A0 #B9B9B9 #B9B9B9;
+    border-image: none;
+    border-right: 1px solid #B9B9B9;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+}
+input:focus, textarea:focus, select:focus {
+    border: 1px solid #999999;
+    outline: 0 none;
+}
+.btn, button {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #000000;
+    border-color: #DDDDDD #CCCCCC #AAAAAA;
+    border-image: none;
+    border-left: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    border-right: 1px solid #CCCCCC;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px #CCCCCC, 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+    color: #333333;
+    font-weight: bold;
+    padding: 0.5em 0.8em;
+    text-shadow: 0 1px 0 white;
+    transition: border-color 0.15s linear 0s;
+}
+.btn {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 12px 26px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.btn-green {
+    background:  #404040;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+.btn-green:hover {
+    background:  #6f599c;
+    background-position: 0 0;
+}
+.btn-green:active {
+}
+.simple-input {
+    border: 1px solid #CCCCCC;
+    font-size: 12px;
+    height: 24px;
+    outline: 0 none;
+    padding: 3px;
+}
+.simple-input:active, .simple-input:focus {
+    border: 1px solid #999999;
+}
+#welcome {
+    background: none repeat scroll 0 0 white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 6px #BBBBBB;
+    margin: 10% auto;
+    padding: 2em;
+    position: relative;
+    width: 400px;
+}
+#welcome input.hint {
+    color: #999999;
+}
+#welcome h3 {
+    color: #222222;
+    font-size: 2em;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin: 0 0 1em;
+}
+#welcome #toggle_register_login {
+    float: right;
+    position: absolute;
+    right: 2em;
+    top: 28px;
+}
+#welcome #session_expired {
+    color: #BB9551;
+    font-size: 1.3em;
+    padding-top: 30px;
+    text-align: center;
+}
+#welcome p {
+    margin: 0 auto;
+    padding-top: 15px;
+    text-align: justify;
+    width: 420px;
+}
+#welcome form {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top: 1px solid #DDDDDD;
+    margin: 0;
+    padding: 2em 0 0;
+    position: relative;
+    text-align: center;
+}
+#welcome #submit {
+    font-size: 1.4em;
+}
+#welcome #fields input {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    outline: 0 none;
+    padding: 5px;
+    width: 100%;
+}
+#welcome .validation_error {
+    background: url("../pic/validation.png") no-repeat scroll left 50% transparent;
+    font-size: 10px;
+    margin-top: -47px;
+    padding: 10px 5px 10px 26px;
+    position: absolute;
+    right: -220px;
+    width: 187px;
+}
+#welcome .double_error {
+    background: url("../pic/validation_double.png") no-repeat scroll left 50% transparent;
+    font-size: 10px;
+    margin-top: -37px;
+    padding: 22px 5px 22px 26px;
+    position: absolute;
+    right: -220px;
+    width: 187px;
+}
+.page {
+ border-radius: 5px 5px 5px 5px;
+    background: none repeat scroll 0 0 white;
+     box-shadow: 0 1px 10px rgba(255, 255, 255, 0.25);
+    margin: 50px auto 0;
+    padding: 30px 5% 80px;
+    width: 70%;
+}
+.page .content {
+    color: #444444;
+    font-size: 14px;
+    max-width: 42em;
+}
+.page h1 {
+    font-size: 22px;
+    line-height: 30px;
+    margin: 10px 0;
+}
+.page p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+.page ul {
+    line-height: 1.8;
+    list-style-type: circle;
+    margin: 10px 10px 10px 30px;
+    padding: 0;
+}
+strong {
+    font-weight: bold;
+}
+#home #features ul {
+    height: 100px;
+    margin: 50px 10% 10px;
+    width: 80%;
+}
+#home #features ul li {
+    background: none repeat scroll 0 0 white;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    margin-right: 1%;
+    padding: 20px 0;
+    text-align: center;
+    width: 23.5%;
+}
+#home #features ul li.last {
+    margin-right: 0;
+}
+#home #features ul li h2 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}

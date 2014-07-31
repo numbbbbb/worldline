@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>世界线</title>
+<!-- Meta -->    
+<meta name="description" content="属于你的世界线">    
+<meta name="keywords" content="世界线，记录" />    
+<meta name="author" content="numbbbbb"> 
+<link rel="stylesheet" type="text/css" href="/static/css/worldline.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
+<script src="/static/js/jquery.color.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/meny.min.js"></script>
+</head>
+<body style="overflow:hidden;">
+	<div class="meny">
+			<h2>Want More?</h2>
+			<ul>
+			<li>
+	<a href="mailto:lj925184928@gmail.com?subject=世界线反馈建议">建议反馈</a>
+	</li>
+	<li>
+	<a href="/about/">关于</a>
+	</li>
+	<li>
+	<a href="/questions/">常见问题</a>
+	</li>
+	<li>
+	<a href="/privacy/">隐私权政策</a>
+	</li>
+			</ul>
+		</div>
+		<div class="meny-arrow"></div>
+			<div class="contents">
+<section id="home">
+<section class="container" >
+	<section class="header">
+		<a href="http://127.0.0.1:8000/">
+		<h1 id="logo"><font>世界线</font></h1>
+		</a>
+	</section>
+		<div class="page">
+		<div class="content">
+		<h1>隐私权政策</h1>
+<p>
+<strong>信息的收集和使用</strong>
+</p>
+<p>我们会在您注册或修改账户信息以及使用本产品提供的服务时收集您的个人信息。</p>
+<p>这些信息将被用于提供、维护、保护和改进我们的服务，或开发新服务。</p>
+<p>
+<strong>信息公开与共享</strong>
+</p>
+<p>我们不会将您的个人信息出租或出售给任何人。以下情况除外：</p>
+<ul>
+<li>您同意让第三方共享资料；</li>
+<li>只有透露您的个人资料，才能提供您所要求的产品和服务；</li>
+<li>我们需要向代表我们提供产品或服务的公司提供资料（除非我们另行通知您，否则这些公司无权使用您的身份识别资料）；</li>
+<li>我们需要听从法庭传票、法律命令或遵循法律程序；</li>
+<li>我们发现你违反了我们的服务条款或任何其他产品及服务的使用规定。</li>
+</ul>
+<p>
+<strong>Cookies</strong>
+</p>
+<p>根据访问者的浏览器类型或其他访问者发送的信息，我们使用 Cookies 来储存访问者的参数选项、定制网页内容。使用世界线需要使用 Cookies。</p>
+<p>
+<strong>广告服务商</strong>
+</p>
+<p>我们不与任何广告服务公司有合作或特殊关系。</p>
+<p>
+<strong>隐私权政策的修订</strong>
+</p>
+<p>我们可能会对隐私权政策进行修改。如果在使用用户个人信息政策方面有大幅度修改时，我们会在网页中显眼的位置贴出相关规定以便及时通知用户。</p>
+		</div>
+		</div>
+</section>
+
+</section>
+</div>
+		<script>
+			// Create an instance of Meny
+			var meny = Meny.create({
+				// The element that will be animated in from off screen
+				menuElement: document.querySelector( '.meny' ),
+
+				// The contents that gets pushed aside while Meny is active
+				contentsElement: document.querySelector( '.contents' ),
+
+				// [optional] The alignment of the menu (top/right/bottom/left)
+				position: Meny.getQuery().p || 'left',
+
+				// [optional] The height of the menu (when using top/bottom position)
+				height: 200,
+
+				// [optional] The width of the menu (when using left/right position)
+				width: 260,
+
+				// [optional] Distance from mouse (in pixels) when menu should open
+				threshold: 40
+			});
+
+			// API Methods:
+			// meny.open();
+			// meny.close();
+			// meny.isOpen();
+			
+			// Events:
+			// meny.addEventListener( 'open', function(){ console.log( 'open' ); } );
+			// meny.addEventListener( 'close', function(){ console.log( 'close' ); } );
+
+			// Embed an iframe if a URL is passed in
+			if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
+				var contents = document.querySelector( '.contents' );
+				contents.style.padding = '0px';
+				contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
+			}
+		</script>
+<script src="/static/js/input_hints.js"></script>
+<script src="/static/js/register.js"></script>
+</body>
+</html>

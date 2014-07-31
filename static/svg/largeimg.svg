@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+-->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20000303 Stylable//EN"
+  "http://www.w3.org/TR/2000/03/WD-SVG-20000303/DTD/svg-20000303-stylable.dtd">
+<svg id="mainid" onload="initsvg(evt)" onzoom="ZoomControl()">
+	<script type="text/ecmascript"><![CDATA[
+	  function initsvg(evt) 
+	  {
+	    try 
+	    {
+	      init(evt);
+	    }
+	    catch(e) {};
+	  }
+
+	  ]]>
+	</script>
+  <defs>
+		<linearGradient id="grad001" gradientTransform="rotate(90)">
+		  <stop offset="0" stop-color="#CBFEFF"/>
+		  <stop offset="0.26" stop-color="#C4F1FF"/>
+		  <stop offset="0.764" stop-color="#A0A9FF"/>
+		  <stop offset="1" stop-color="#9999FF"/>
+		</linearGradient>
+    <style type="text/css">
+      <![CDATA[
+      line
+      {
+        stroke: #000;
+        stroke-width: 1px
+      }
+      g text
+      {
+        font-family: Arial,Helvetica,sans-serif,SimSun;
+        font-size: 11px;
+        cursor:hand;
+      }
+      g rect
+      {
+        cursor:move;
+      }
+      rect
+      {
+        cursor:move;
+      }
+      ]]>
+    </style>
+  </defs>
+  <a xlink:href="">
+  <g id="imageBorder">
+      <rect id="imageBorderRect" x="0" y="0" width="358" height="256" style="fill:url(#grad001);stroke:none"/>
+  </g>
+	<g id="gc">
+	</g>
+  <g id="tooltip">
+    <rect id="ttr" x="0" y="0" rx="5" ry="5" width="100" height="16" style="visibility: hidden"/>
+    <text id="ttt" x="0" y="0" style="visibility: hidden">dyn. Text</text>
+  </g>
+  </a>
+</svg>

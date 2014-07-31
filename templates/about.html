@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>世界线</title>
+<!-- Meta -->    
+<meta name="description" content="属于你的世界线">    
+<meta name="keywords" content="世界线，记录" />    
+<meta name="author" content="numbbbbb"> 
+<link rel="stylesheet" type="text/css" href="/static/css/worldline.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
+<script src="/static/js/jquery.color.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/meny.min.js"></script>
+</head>
+<body style="overflow:hidden;">
+	<div class="meny">
+			<h2>Want More?</h2>
+			<ul>
+			<li>
+	<a href="mailto:lj925184928@gmail.com?subject=世界线反馈建议">建议反馈</a>
+	</li>
+	<li>
+	<a href="/about/">关于</a>
+	</li>
+	<li>
+	<a href="/questions/">常见问题</a>
+	</li>
+	<li>
+	<a href="/privacy/">隐私权政策</a>
+	</li>
+			</ul>
+		</div>
+		<div class="meny-arrow"></div>
+			<div class="contents">
+<section id="home">
+<section class="container" >
+	<section class="header">
+		<a href="http://127.0.0.1:8000/">
+		<h1 id="logo"><font>世界线</font></h1>
+		</a>
+	</section>
+		<div class="page">
+		<div class="content">
+		<h1><strong>关于世界线</strong></h1>
+		<p>解释下为什么叫世界线吧，其实就是来源于命运石之门。当时想做这个网站碰巧刚看完命运石之门，然后网站的表现形式能和线挂上钩，就干脆起了这么个名字。</p>
+		<p>我挺喜欢这个动漫的，所以这个网站当作是一个小小的纪念吧。</p>
+		<p>=======================================================================================================================</p>
+		<strong><font color=red>WARNING!!</font></strong>
+		<p>我想点开这个页面的人,80%是随便点一下看看而已——我自己点"关于"这种东西时候也怀着同样的心情。</p><p>19.9%的人可能是想看一下这个网站为什么叫这个一个名字。上面已经回答过了。</p>然后，下面就是一些废话了。
+		建议跳过。<p></p>或者，你愿意做剩下的那0.1%的话——我很荣幸。谢谢。</p>
+		<p>=======================================================================================================================</p>
+		<p>这个网站本来是想做成一个<strong>快速记录</strong>自己想法的东西。</p>
+		<p>大多数时候我看到一些好东西——一个漂亮的页面，一个有用的技术，或者一篇我可能过段时间会用到的文章——我都会想着，既然暂时用不到，那点击一下“收藏”好了。结果就是，我的收藏夹越来越大越来越乱。最麻烦的是，时隔很久之后我再去看我当时收藏的那个页面，我无论如何都想不起来当时自己收藏它的原因了！！</p>
+		<p>“过段时间再说吧”=“我<font color=red>再也不会看</font>这个东西了！”</p>
+		<p>所以<strong>世界线</strong>就产生了。直观的展示时间，告诉你：你那些“过段时间再说”的灵感离你越来越远了！</p>
+		<p>但是感觉观赏性还是远大于实用性。我在努力改进。如果你有任何意见建议，都可以发送邮件给我。<strong><a href="mailto:lj925184928@gmail.com?subject=世界线反馈建议">lj925184928@gmail.com</a></strong></p>
+		<p>顺便。。如果你愿意直接用QQ和我交流也可以。什么？我的QQ号？我不是告诉你了吗 = =</p>
+		</div>
+		</div>
+</section>
+
+</section>
+</div>
+		<script>
+			// Create an instance of Meny
+			var meny = Meny.create({
+				// The element that will be animated in from off screen
+				menuElement: document.querySelector( '.meny' ),
+
+				// The contents that gets pushed aside while Meny is active
+				contentsElement: document.querySelector( '.contents' ),
+
+				// [optional] The alignment of the menu (top/right/bottom/left)
+				position: Meny.getQuery().p || 'left',
+
+				// [optional] The height of the menu (when using top/bottom position)
+				height: 200,
+
+				// [optional] The width of the menu (when using left/right position)
+				width: 260,
+
+				// [optional] Distance from mouse (in pixels) when menu should open
+				threshold: 40
+			});
+
+			// API Methods:
+			// meny.open();
+			// meny.close();
+			// meny.isOpen();
+			
+			// Events:
+			// meny.addEventListener( 'open', function(){ console.log( 'open' ); } );
+			// meny.addEventListener( 'close', function(){ console.log( 'close' ); } );
+
+			// Embed an iframe if a URL is passed in
+			if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
+				var contents = document.querySelector( '.contents' );
+				contents.style.padding = '0px';
+				contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
+			}
+		</script>
+<script src="/static/js/input_hints.js"></script>
+<script src="/static/js/register.js"></script>
+</body>
+</html>
